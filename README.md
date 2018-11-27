@@ -1,5 +1,5 @@
 # simbyp
-Simple Python Buildscripts. Python-based build scripts aimed at JDK 11
+A JDK11 compatible Java module build tool (written entirely in Python).
 
 # Requirements
 * Python v3+ (python3)
