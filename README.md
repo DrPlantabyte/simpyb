@@ -35,7 +35,7 @@ This script will automatically run *build.py* if necessary to create an up-to-da
 
 *You do not need to modify this file.*
 
-### jar.py
+### run.py
 Runs the module in the run directory specified in *config.py*.
 
 This script will automatically run *jar.py* if necessary to create an up-to-date .jar file, and then runs the .jar file.
