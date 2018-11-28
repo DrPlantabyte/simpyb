@@ -29,9 +29,16 @@ Compiles your module, automatically retrieving Maven dependencies and copying th
 *You do not need to modify this file.*
 
 ### jar.py
-Packages your module into a .jar file. If you have a main class defined in *config.py*, then you should be able to run the .jar file by simmply issuing **java -jar path/to/file.jar** in the terminal. 
+Packages your module into a .jar file. If you have a main class defined in *config.py*, then you can run it with *run.py* (or use *java -jar path/to/file.jar* in the terminal). 
 
 This script will automatically run *build.py* if necessary to create an up-to-date .jar file.
+
+*You do not need to modify this file.*
+
+### jar.py
+Runs the module in the run directory specified in *config.py*.
+
+This script will automatically run *jar.py* if necessary to create an up-to-date .jar file, and then runs the .jar file.
 
 *You do not need to modify this file.*
 
