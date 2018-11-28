@@ -23,7 +23,7 @@ if __name__ == '__main__':
 	dir_list = list(config.srcDirs + config.resourceDirs + config.dependencyDirs 
 			+ [config.compileDir, config.runDir, config.jarDir]
 			+ config.testSrcDirs + config.testResourcesDirs + config.testDependencyDirs
-			+ [config.testCompileDir + config.testRunDir + config.testReportDir]
+			+ [config.testCompileDir, config.testRunDir, config.testReportDir]
 			+ [config.localCacheDir]) # list workaround for python being new-line sensitive
 	for new_dir in dir_list:
 		if not path.exists(new_dir):
