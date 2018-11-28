@@ -95,7 +95,7 @@ class %sTest {
 	# ignores for hg and git
 	util.info('\ncreating DVCS ignore files')
 	ignore_list = list([config.compileDir, config.runDir, config.jarDir]
-			+ [config.testCompileDir + config.testRunDir + config.testReportDir]
+			+ [config.testCompileDir, config.testRunDir, config.testReportDir]
 			+ [config.localCacheDir, '__pycache__']) # list workaround for python being new-line sensitive
 	util.info('\n.gitignore:')
 	with open('.gitignore', 'w') as fout:
