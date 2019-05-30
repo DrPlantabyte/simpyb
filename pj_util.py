@@ -259,6 +259,8 @@ def make_parent_dir(file_path):
 	file_path - path to some file
 	"""
 	parent_dir = path.dirname(file_path)
+	if parent_dir == '': # means parent is working directory
+		return
 	if not path.isdir(parent_dir):
 		info('creating directory %s' % parent_dir)
 		os.makedirs(parent_dir)
@@ -292,6 +294,7 @@ def write_manifest( manifest_path, main_class=None, libs_list=None ):
 	"""
 	action('creating manifest file %s' % manifest_path)
 	with open(manifest_path, 'w') as mout:
+		write_and_print('Manifest-Version: 1.0\n', mout)
 		if(main_class != None):
 			write_and_print('Main-Class: %s\n' % main_class, mout)
 		if libs_list != None and len(libs_list) > 0:

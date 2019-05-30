@@ -36,7 +36,8 @@ if __name__ == '__main__':
 	class_name = config.mainClass.split('.')[-1]
 	package_name = '.'.join(config.mainClass.split('.')[0:-1])
 	module_name = package_name
-	module_file = path.join(config.srcDirs[0], str(package_name).replace('.', os.sep) + os.sep + 'module-info.java')
+	module_file = path.join(config.srcDirs[0], 'module-info.java')
+	#
 	if not path.exists(app_file):
 		util.make_parent_dir(app_file)
 		util.info('\n%s:' % app_file)
@@ -46,10 +47,10 @@ package %s;
 class %s {
 	public static void main(String[] args){
 		%s inst = new %s();
-		System.out.println(inst.getNumber());
+		System.out.println("The magic number is "+inst.getNumber());
 	}
 	public int getNumber(){
-		return 1;
+		return 42;
 	}
 }
 """ % (package_name, class_name, class_name, class_name), fout)
@@ -87,7 +88,7 @@ class %sTest {
 
     @Test
     public void numberTest() {
-        assertEquals(1, inst.getNumber(), "error: number not equal to 1!");
+        assertEquals(42, inst.getNumber(), "error: number not equal to 1!");
     }
 }
 """ % (package_name, class_name, class_name, class_name), fout)
@@ -110,5 +111,16 @@ class %sTest {
 				lambda x: str(x).replace('\\', '/')
 		, ignore_list)), fout)
 		util.write_and_print('\n', fout)
+	
+	# download libraries
+	print() # add a little space
+	util.info('fetching maven dependencies')
+	util.download_maven_dependencies(config.dependencyDirs[0], config.mavenDependencies, config.mvnExec)
+	
+	# create IntelliJ project
+	print() # add a little space
+	util.info('creating IntelliJ project files')
+	import intellij
+	intellij.make_project()
 	
 # done

@@ -11,20 +11,20 @@ rootDir = path.dirname(path.abspath(__file__)) # change if this file is not in p
 #project settings
 name = 'myapp'
 compileDir = 'compile'
-jarDir = 'output'
+jarDir = 'out'
 runDir = 'run'
 localCacheDir = 'cache'
 srcDirs = ['src/main/java']
 resourceDirs = ['src/main/resources']
 dependencyDirs = ['libs']
-mavenDependencies = ['org.openjfx:javafx-fxml:11.0.1']
+mavenDependencies = ['org.openjfx:javafx-fxml:11.0.2']
 testSrcDirs = ['src/test/java']
 testResourcesDirs = ['src/test/resources']
 testDependencyDirs = ['test-libs']
 testRunDir = 'test-run'
 testReportDir = 'test-reports'
 testCompileDir = 'test-compile'
-testMavenDependencies = ['org.junit.platform:junit-platform-console-standalone:1.3.1']
+testMavenDependencies = ['org.junit.platform:junit-platform-console-standalone:1.4.2']
 manifestFile = None
 mainClass = 'myorg.myapp.App'
 
