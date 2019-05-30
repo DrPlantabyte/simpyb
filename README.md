@@ -11,7 +11,7 @@ Just copy all of the *.py* files into the root of a folder, edit *config.py* to 
 ## The scripts
 To install this build tool, simply copy these python scripts into your module folder. These scripts are designed to compile a single module. 
 
-For multiple-module projects, put each module in its own folder. Edit each *config.py* to add the output jar folders of other modules to the *dependencyDirs* list and then edit the **pre_build()** function in each to call the *jar.py* script of dependency modules.
+**Advanced:** For multiple-module projects, put each module in its own folder. Edit each *config.py* to add the output jar folders of other modules to the *dependencyDirs* list and then edit the **pre_build()** function in each to call the *jar.py* script of dependency modules.
 
 ### config.py
 This file describes your module and includes hooks for custom or platform-specific behavior. 
@@ -50,5 +50,12 @@ Compiles and tests your module by patching-in the test source-code and Jupiter J
 ### new-module.py
 This is a quick-start script to make a template project with all of the folders from the project structure defined in *config.py*.
 
+*You do not need to modify this file.*
+
 ### pj_util.py
-This is a utility script file that defines functions used by the other scripts. Don't modify this file unless you really know what you are doing.
+This is a utility script file that defines functions used by the other scripts. **Don't modify this file unless you really know what you are doing.**
+
+### intellij.py
+This file is used to create all the files for an IntelliJ project. Used by *new-module.py*
+
+*You do not need to modify this file.*
