@@ -298,7 +298,7 @@ def write_manifest( manifest_path, main_class=None, libs_list=None ):
 		if(main_class != None):
 			write_and_print('Main-Class: %s\n' % main_class, mout)
 		if libs_list != None and len(libs_list) > 0:
-			write_and_print('Class-Path: %s\n' % (' '.join( map(pathname2url, libs_list) )), mout)
+			write_and_print('Class-Path: \n %s\n' % ('\n '.join( map(pathname2url, libs_list) )), mout)
 
 def check_modules(java_list_modules_output, module_info_file):
 	"""
