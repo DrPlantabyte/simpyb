@@ -12,6 +12,7 @@ import re
 COLORS_ENABLED = True
 if 'win' in sys.platform:
 	OPERATING_SYSTEM = 'windows'
+	COLORS_ENABLED = False # PowerShell does not support \...[...m color codes
 elif 'linux' in sys.platform:
 	OPERATING_SYSTEM = 'linux'
 elif 'darwin' in sys.platform:
