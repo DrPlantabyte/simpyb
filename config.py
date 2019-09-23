@@ -63,6 +63,7 @@ def post_junit():
 import sys
 if 'win' in sys.platform:
 	# windows
+	pythonExec = 'python.exe'
 	pass
 elif 'linux' in sys.platform:
 	# linux
