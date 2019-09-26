@@ -2,7 +2,6 @@
 
 import os
 from os import path
-from tempfile import NamedTemporaryFile
 import subprocess
 import pj_util as util
 import config
@@ -127,7 +126,8 @@ if __name__ == '__main__':
 		test_packages = list(set(test_packages))
 		util.info('test packages:', test_packages)
 		
-		arg_file = NamedTemporaryFile().name
+		arg_file = path.join(config.localCacheDir, 'javac-args.txt')
+		util.make_parent_dir(arg_file)
 		#command_list = [config.javaExec]
 		command_list = []
 		command_list += ['--module-path',  os.pathsep.join( map(lambda x: path.relpath(x, config.testRunDir), 
