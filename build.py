@@ -2,7 +2,6 @@
 
 import os
 from os import path
-from tempfile import NamedTemporaryFile
 import subprocess
 import pj_util as util
 import config
@@ -43,7 +42,7 @@ if __name__ == '__main__':
 	if(success == True):
 		print() # add a little space
 		util.info('fetching maven dependencies')
-		success = util.download_maven_dependencies(config.dependencyDirs[0], config.mavenDependencies, config.mvnExec)
+		success = util.download_maven_dependencies(config.dependencyDirs[0], config.mavenDependencies, config.mvnExec, localCacheDir=config.localCacheDir)
 
 	# module check
 	if(success == True):
@@ -79,7 +78,8 @@ if __name__ == '__main__':
 	if(success == True):
 		print() # add a little space
 		util.info('compiling sources')
-		arg_file = NamedTemporaryFile().name
+		arg_file = path.join(config.localCacheDir, 'javac-args.txt')
+		util.make_parent_dir(arg_file)
 		#command_list = [config.javacExec]
 		command_list = []
 		command_list += ['-d', config.compileDir]

@@ -2,7 +2,6 @@
 
 import os
 from os import path
-from tempfile import NamedTemporaryFile
 import subprocess
 import pj_util as util
 import config
@@ -54,7 +53,8 @@ if __name__ == '__main__':
 			command_list += ['-m', config.manifestFile ]
 		else:
 			util.info('generating manifest file')
-			tmp_manifest_file = NamedTemporaryFile(suffix='.MF').name
+			tmp_manifest_file = path.join(config.localCacheDir,'MANIFEST.MF')
+			util.make_parent_dir(tmp_manifest_file)
 			util.write_manifest( tmp_manifest_file, config.mainClass, util.get_files(config.dependencyDirs, ['.jar', '.zip']) )
 			command_list += ['-m', tmp_manifest_file ]
 		

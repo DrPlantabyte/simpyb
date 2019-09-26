@@ -69,12 +69,13 @@ if __name__ == '__main__':
 			# get maven deps
 			print() # add a little space
 			util.info('fetching maven dependencies')
-			success = util.download_maven_dependencies(config.testDependencyDirs[0], config.testMavenDependencies, config.mvnExec)
+			success = util.download_maven_dependencies(config.testDependencyDirs[0], config.testMavenDependencies, config.mvnExec, localCacheDir=config.localCacheDir)
 			
 			if(success == True):
 				# test compilation
 				util.info('testing file changes detected, compiling junit tests')
-				arg_file = NamedTemporaryFile().name
+				arg_file = path.join(config.localCacheDir, 'javac-args.txt')
+				util.make_parent_dir(arg_file)
 				#command_list = [config.javacExec]
 				command_list = []
 				command_list += ['-d', config.testCompileDir]

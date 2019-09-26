@@ -5,7 +5,6 @@ from os import path
 from urllib.request import pathname2url
 import subprocess
 from subprocess import call
-from tempfile import NamedTemporaryFile
 import sys
 import re
 
@@ -55,7 +54,7 @@ def write_and_print(text_str, file_out):
 	action(text_str, end='')
 	file_out.write(text_str)
 
-def download_maven_dependencies(download_dir, list_of_gradle_strings, maven_command='mvn', working_dir='.'):
+def download_maven_dependencies(download_dir, list_of_gradle_strings, maven_command='mvn', working_dir='.', localCacheDir='./temp'):
 	"""
 	download_maven_dependencies(download_dir, list_of_gradle_strings, maven_command='mvn', working_dir='.')
 	
@@ -71,6 +70,7 @@ def download_maven_dependencies(download_dir, list_of_gradle_strings, maven_comm
 	format of 'groupId:artifactId:version'
 	maven_command - (optional) path to or name of maven command. Default: 'mvn'
 	working_dir - (optional) in which directory to run this command
+	localCacheDir - This is where the temporary pom.xml file will be stored
 	
 	returns: True if the operation was a success, False otherwise
 	"""
@@ -79,7 +79,8 @@ def download_maven_dependencies(download_dir, list_of_gradle_strings, maven_comm
 		return True
 	if not path.exists(download_dir):
 		os.makedirs(download_dir)
-	pom_file = NamedTemporaryFile(suffix='-pom.xml').name
+	pom_file = path.join(localCacheDir, 'mock-pom.xml')
+	make_parent_dir(pom_file)
 	with open(pom_file, 'w') as pout:
 		pout.write('<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"> <modelVersion>4.0.0</modelVersion> <groupId>project</groupId> <artifactId>dependency</artifactId> <version>list</version> \n<dependencies>\n')
 		for lib_str in list_of_gradle_strings:
@@ -94,7 +95,7 @@ def download_maven_dependencies(download_dir, list_of_gradle_strings, maven_comm
 			pout.write('  <version>%s</version>' % tokens[2])
 			pout.write(' </dependency>')
 		pout.write('</dependencies> </project>')
-	bool_result = command([maven_command, '-f', str(pom_file), 'dependency:copy-dependencies', '-DoutputDirectory=%s' % path.abspath(download_dir)], working_dir=working_dir)
+	bool_result = command([maven_command, '-f', str(path.abspath(pom_file)), 'dependency:copy-dependencies', '-DoutputDirectory=%s' % path.abspath(download_dir)], working_dir=working_dir)
 	if bool_result == False:
 		error('failed to run mvn command')
 	return bool_result

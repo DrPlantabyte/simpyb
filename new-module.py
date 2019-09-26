@@ -115,7 +115,7 @@ class %sTest {
 	# download libraries
 	print() # add a little space
 	util.info('fetching maven dependencies')
-	util.download_maven_dependencies(config.dependencyDirs[0], config.mavenDependencies, config.mvnExec)
+	util.download_maven_dependencies(config.dependencyDirs[0], config.mavenDependencies, config.mvnExec, localCacheDir=config.localCacheDir)
 	
 	# create IntelliJ project
 	print() # add a little space
