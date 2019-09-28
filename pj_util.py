@@ -300,7 +300,7 @@ def write_manifest( manifest_path, main_class=None, libs_list=None ):
 		if(main_class != None):
 			write_and_print('Main-Class: %s\n' % main_class, mout)
 		if libs_list != None and len(libs_list) > 0:
-			write_and_print('Class-Path: \n %s\n' % ('\n '.join( map(pathname2url, libs_list) )), mout)
+			write_and_print('Class-Path: \n %s\n\n' % ('\n '.join( map(pathname2url, libs_list) )), mout)
 
 def check_modules(java_list_modules_output, module_info_file):
 	"""
@@ -377,6 +377,28 @@ def parse_module_list_line(module_line):
 	if('automatic' == tokens[-1]):
 		is_automatic = True
 	return name, version, source, is_automatic
+def get_module_declaration(search_dir_list):
+	"""
+	get_module_declaration(search_dir_list)
+	
+	Searches the given directories for the module-info.java file and parses is for required 
+	and exported modules. For example:
+	
+	module_name, export_list, requires_list = parse_moduleinfo(['src/main/java'])
+	
+	returns module_name, export_list, requires_list
+	module_name - name of this module
+	export_list - exported java packages
+	requires_list - required modules
+	"""
+	mod_info_file_list = get_files(search_dir_list, ['module-info.java'])
+	if len(mod_info_file_list) == 0:
+		raise FileNotFoundError('Unable to find module-info.java in [%s]' % (', '.join(search_dir_list)) )
+	elif len(mod_info_file_list) != 1:
+		raise FileNotFoundError('Multiple copies of module-info.java found in [%s]. Only one is allowed.' % (', '.join(search_dir_list)) )
+	module_name, export_list, requires_list = parse_moduleinfo( mod_info_file_list[0] )
+	return module_name, export_list, requires_list
+	
 def parse_moduleinfo(modinfo_filepath):
 	"""
 	parse_moduleinfo(modinfo_filepath)

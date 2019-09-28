@@ -63,8 +63,6 @@ if __name__ == '__main__':
 
 		success = util.command(command_list)
 		
-		if tmp_manifest_file != None:
-			util.del_file(tmp_manifest_file)
 
 	# copy libs
 	if(success == True):

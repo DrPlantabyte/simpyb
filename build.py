@@ -61,7 +61,7 @@ if __name__ == '__main__':
 			# just right
 			command_list = [config.javaExec]
 			command_list += ['--module-path',  os.pathsep.join(
-				util.get_files(config.dependencyDirs, ['.jar', '.zip'])
+				util.get_files(config.dependencyDirs, ['.jar'])
 			)]
 			command_list += ['--list-modules']
 			std_output, success = util.command_output(command_list)
@@ -97,7 +97,6 @@ if __name__ == '__main__':
 		#success = util.command(command_list)
 		success = util.command([config.javacExec, '@'+arg_file])
 		
-		util.del_file(arg_file)
 
 	# copy resources
 	if(success == True):

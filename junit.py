@@ -73,7 +73,7 @@ if __name__ == '__main__':
 			if(success == True):
 				# test compilation
 				util.info('testing file changes detected, compiling junit tests')
-				arg_file = path.join(config.localCacheDir, 'javac-args.txt')
+				arg_file = path.join(config.localCacheDir, 'junit-javac-args.txt')
 				util.make_parent_dir(arg_file)
 				#command_list = [config.javacExec]
 				command_list = []
@@ -97,7 +97,6 @@ if __name__ == '__main__':
 				#success = util.command(command_list)
 				success = util.command([config.javacExec, '@'+arg_file])
 				
-				util.del_file(arg_file)
 			
 			# copy test resources
 			if(success == True):
