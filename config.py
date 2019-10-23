@@ -17,10 +17,12 @@ localCacheDir = 'cache' # temporary generated files
 srcDirs = ['src/main/java'] # code files
 resourceDirs = ['src/main/resources'] # non-code files that should be included with the generated binaries
 dependencyDirs = ['libs'] # libraries (.jar files/modules)
-mavenDependencies = ['org.openjfx:javafx-base:11.0.2',
+mavenDependencies = [ # maven dependencies in format groupId:artifactId:version		# Below are some popular maven libraries. Change to suit your particular project!		'org.ojalgo:ojalgo:47.3.1',		'com.google.guava:guava:28.1-jre',		'commons-io:commons-io:2.6',
+		'org.apache.logging.log4j:log4j-core:2.12.1',
+		'org.apache.logging.log4j:log4j-api:2.12.1',		'com.google.code.gson:gson:2.8.6',		'org.openjfx:javafx-base:11.0.2',
 		'org.openjfx:javafx-controls:11.0.2',
 		'org.openjfx:javafx-fxml:11.0.2',
-		'org.json:json:20190722'] # dependencies to download from maven central
+		'org.json:json:20190722'] 
 testSrcDirs = ['src/test/java'] # source code for tests
 testResourcesDirs = ['src/test/resources'] # testing resources
 testDependencyDirs = ['test-libs'] # testing-only libs
