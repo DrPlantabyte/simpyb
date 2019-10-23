@@ -125,7 +125,7 @@ if __name__ == '__main__':
 		test_packages = list(set(test_packages))
 		util.info('test packages:', test_packages)
 		
-		arg_file = path.join(config.localCacheDir, 'javac-args.txt')
+		arg_file = path.join(config.localCacheDir, 'test-javac-args.txt')
 		util.make_parent_dir(arg_file)
 		#command_list = [config.javaExec]
 		command_list = []
