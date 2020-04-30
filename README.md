@@ -45,7 +45,7 @@ Just copy all of the *.py* files into the root of a folder, edit *config.py* to 
 ### The scripts
 To install this build tool, simply copy these python scripts into your module folder. These scripts are designed to compile a single module. 
 
-In the default configuration, you will have a *modules* folder which contains each module named in *config.py*. Each of the module folders has its own source and resource folder for code and other files, respectively. All modules share the same folders for dependencies, though the actual module dependency value are specified in each modules *module-info.java* file.
+In the default configuration, you will have a *modules* folder which contains each module named in *config.py*. Each of the module folders has its own source and resource folder for code and other files, respectively. All modules share the same folders for dependencies, though the actual dependencies are specified in each modules *module-info.java* file.
 
 #### config.py
 This file describes your module and includes hooks for custom or platform-specific behavior. Edit this file and change **my.project** to your project's package name. You my edit other variables in this file too, to tailor the project to your needs.
