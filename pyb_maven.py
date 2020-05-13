@@ -1,8 +1,12 @@
 #!/usr/bin/python3
 from subprocess import call
 from os import path
+import sys
 
 import pyb_util as util
+
+def error(msg):
+	print(str(msg), file=sys.stderr)
 
 def fetch(repositories_list, download_dir, maven_exec='mvn', temp_dir='tmp'):
 	"""
