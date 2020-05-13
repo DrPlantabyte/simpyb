@@ -7,6 +7,7 @@ import pyb_util as util
 
 def error(msg):
 	print(str(msg), file=sys.stderr)
+	exit(1)
 
 def fetch(repositories_list, download_dir, maven_exec='mvn', temp_dir='tmp'):
 	"""
