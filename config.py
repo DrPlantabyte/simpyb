@@ -8,6 +8,7 @@ this_os_arch='unknown'
 if 'win' in sys.platform: this_os_arch='windows-x64'
 if 'linux' in sys.platform: this_os_arch='linux-x64'
 if 'darwin' in sys.platform: this_os_arch='osx-x64'
+# other platforms: linux-arm32, linux-arm64
 
 
 module_list=[
