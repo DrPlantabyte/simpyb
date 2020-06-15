@@ -59,4 +59,5 @@ def jlink_compile(target_os_arch):
 jlink_compile(config.this_os_arch)
 
 # done
+util.check_changed_files(dir_list=config.module_dir,tmp_file=config.timestamp_cachefile)
 print('\nBUILD SUCCESFUL!\n')
