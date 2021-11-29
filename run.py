@@ -14,7 +14,7 @@ if util.check_changed_files(dir_list=config.module_dir,tmp_file=config.timestamp
 	util.shell_command([config.python_exec, 'build.py'])
 
 if config.this_os_arch == 'windows-x64':
-	launch_file = path.join(config.build_dir,'image', config.this_os_arch, 'launch.bat')
+	launch_file = path.join(config.build_dir,'image', config.this_os_arch, 'bin', 'launch.bat')
 else:
 	launch_file = path.join(config.build_dir,'image', config.this_os_arch, 'bin', 'launch')
 
